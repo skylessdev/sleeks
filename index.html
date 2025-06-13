@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,44 +6,89 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sleeks | King Size Style</title>
   <link rel="icon" href="sleeks-favicon.png" type="image/png" />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
-    * { box-sizing: border-box; }
+    * { 
+      box-sizing: border-box; 
+      margin: 0;
+      padding: 0;
+    }
 
     body {
-      margin: 0;
       background: #fffaf4;
       font-family: 'Inter', sans-serif;
       color: #111;
+      line-height: 1.6;
     }
 
+    /* Header */
     header {
       position: sticky;
       top: 0;
-      background: #fffaf4;
+      background: rgba(255, 250, 244, 0.95);
+      backdrop-filter: blur(10px);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1.2rem 2rem;
-      z-index: 999;
-      border-bottom: 1px solid #eee;
+      padding: 1rem 2rem;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
     }
 
     .logo {
       height: 32px;
     }
 
-    .menu {
+    .menu-button {
       font-family: 'Playfair Display', serif;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       font-weight: 600;
       cursor: pointer;
+      background: none;
+      border: none;
+      color: #111;
     }
 
+    .dropdown {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      padding: 1.5rem;
+      min-width: 200px;
+      display: none;
+      text-align: center;
+    }
+
+    .dropdown.show {
+      display: block;
+    }
+
+    .dropdown a {
+      display: block;
+      padding: 0.75rem 0;
+      text-decoration: none;
+      color: #111;
+      font-weight: 500;
+      border-bottom: 1px solid #eee;
+    }
+
+    .dropdown a:last-child {
+      border-bottom: none;
+    }
+
+    .dropdown a:hover {
+      color: #666;
+    }
+
+    /* Hero Section */
     .hero {
       position: relative;
       height: 90vh;
-      background: url('sleeks-hero.jpg') center/cover no-repeat;
+      background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('sleeks-hero.jpg') center/cover no-repeat;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -50,28 +96,235 @@
     }
 
     .hero-logo {
-      max-width: 320px;
+      max-width: 400px;
       width: 80%;
     }
 
-    .cta-button {
-      background: #111;
-      color: #fff;
-      padding: 0.9rem 2rem;
-      text-decoration: none;
-      border-radius: 6px;
-      font-weight: bold;
-      font-size: 1rem;
-      margin-top: 1.5rem;
-      display: inline-block;
-    }
-
+    /* Sections */
     .section {
-      text-align: center;
       padding: 4rem 2rem;
-      background: #fffaf4;
+      text-align: center;
     }
 
     .section h2 {
       font-family: 'Playfair Display', serif;
-      font-size: 2.
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      color: #111;
+    }
+
+    .section p {
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto 2rem;
+      color: #555;
+    }
+
+    /* Make Waves Section */
+    .waves-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .waves-image {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    /* Product Showcase */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .product-card {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .product-image {
+      width: 100%;
+      height: 200px;
+      background: #f0f0f0;
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #888;
+      font-style: italic;
+    }
+
+    .product-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .product-subtitle {
+      color: #666;
+      font-size: 0.9rem;
+    }
+
+    /* Join Higher Ground */
+    .contact-section {
+      background: #111;
+      color: #fff;
+    }
+
+    .contact-section h2 {
+      color: #fff;
+    }
+
+    .contact-section p {
+      color: #ccc;
+    }
+
+    .contact-link {
+      display: inline-block;
+      background: #fffaf4;
+      color: #111;
+      padding: 1rem 2rem;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 700;
+      margin-top: 2rem;
+      transition: background 0.3s ease;
+    }
+
+    .contact-link:hover {
+      background: #f0f0f0;
+    }
+
+    /* Footer */
+    footer {
+      background: #111;
+      color: #fff;
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+      header {
+        padding: 1rem;
+      }
+
+      .section {
+        padding: 3rem 1rem;
+      }
+
+      .section h2 {
+        font-size: 2rem;
+      }
+
+      .hero-logo {
+        max-width: 300px;
+      }
+
+      .waves-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .products-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <img src="sleeks-favicon.png" alt="Sleeks" class="logo">
+    <button class="menu-button" onclick="toggleMenu()">Menu +</button>
+    <div class="dropdown" id="dropdown">
+      <a href="https://60qfv3-8v.myshopify.com/" target="_blank">Shop</a>
+      <a href="#about">About</a>
+      <a href="mailto:partners@sleeks.co.za">Contact</a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <img src="sleeks-official.png" alt="Sleeks Official" class="hero-logo">
+  </section>
+
+  <!-- Make Waves Section -->
+  <section class="section">
+    <h2>Make Waves</h2>
+    <p>Retro rituals, cheeky collectibles, and tubes built to sell — not just sit pretty.</p>
+    <div class="waves-grid">
+      <img src="summer-1.jpg" alt="Summer Vibes 1" class="waves-image">
+      <img src="summer-2.jpg" alt="Summer Vibes 2" class="waves-image">
+    </div>
+  </section>
+
+  <!-- Product Showcase Section -->
+  <section class="section">
+    <h2>Product Showcase</h2>
+    <div class="products-grid">
+      <div class="product-card">
+        <div class="product-image">Product Image</div>
+        <div class="product-title">Sleeks™ Airdrop</div>
+        <div class="product-subtitle">Premium delivery experience</div>
+      </div>
+      <div class="product-card">
+        <div class="product-image">Product Image</div>
+        <div class="product-title">Club Kit</div>
+        <div class="product-subtitle">Essential accessories collection</div>
+      </div>
+      <div class="product-card">
+        <div class="product-image">Product Image</div>
+        <div class="product-title">Lifestyle Activation</div>
+        <div class="product-subtitle">Complete brand experience</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Join Higher Ground Section -->
+  <section class="section contact-section" id="about">
+    <h2>Join Higher Ground</h2>
+    <p>Our inner circle for partners, retailers & collaborators.</p>
+    <a href="mailto:partners@sleeks.co.za" class="contact-link">partners@sleeks.co.za</a>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>Sleeks™ | Designed in Cape Town, South Africa</p>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      const dropdown = document.getElementById('dropdown');
+      dropdown.classList.toggle('show');
+    }
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(event) {
+      const dropdown = document.getElementById('dropdown');
+      const menuButton = document.querySelector('.menu-button');
+      
+      if (!dropdown.contains(event.target) && !menuButton.contains(event.target)) {
+        dropdown.classList.remove('show');
+      }
+    });
+  </script>
+</body>
+</html>
