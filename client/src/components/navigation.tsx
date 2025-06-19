@@ -8,14 +8,17 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import sleeksLogo from "@assets/sleeks-logo.png";
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
 
   const SleeksLogo = () => (
-    <svg width="120" height="40" viewBox="0 0 120 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-8 w-auto">
-      <text x="60" y="28" fontFamily="Inter" fontSize="24" fontWeight="700" fill="#000000" textAnchor="middle">Sleeks</text>
-    </svg>
+    <img 
+      src={sleeksLogo} 
+      alt="Sleeks" 
+      className="h-8 w-auto"
+    />
   );
 
   const NavDropdown = ({ title, items }: { title: string; items: string[] }) => (
