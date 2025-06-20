@@ -46,6 +46,10 @@ export default function Navigation() {
               <Link href="/live-drops" className="w-full">
                 {item}
               </Link>
+            ) : item === "Apparel" ? (
+              <Link href="/apparel" className="w-full">
+                {item}
+              </Link>
             ) : (
               item
             )}
@@ -123,6 +127,10 @@ export default function Navigation() {
                             <div key={item} className="text-sleeks-gray hover:text-sleeks-black font-medium text-xs tracking-wide py-1">
                               {item === "Live Drops" ? (
                                 <Link href="/live-drops" onClick={() => setIsOpen(false)}>
+                                  {item}
+                                </Link>
+                              ) : item === "Apparel" ? (
+                                <Link href="/apparel" onClick={() => setIsOpen(false)}>
                                   {item}
                                 </Link>
                               ) : (

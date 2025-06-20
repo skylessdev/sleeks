@@ -1,0 +1,49 @@
+import { useEffect, useState } from 'react'
+import Navigation from '@/components/navigation'
+import Footer from '@/components/footer'
+import { fetchKits } from '@/lib/fetchKits'
+
+export default function Apparel() {
+  const [kits, setKits] = useState([])
+
+  useEffect(() => {
+    fetchKits().then(setKits)
+  }, [])
+
+  return (
+    <div className="min-h-screen bg-white">
+      <Navigation />
+      
+      <main className="max-w-4xl mx-auto px-4 py-12 pt-24">
+        <h1 className="text-3xl font-bold mb-6">Apparel</h1>
+
+        {kits.length === 0 ? (
+          <p className="text-gray-500">No apparel available.</p>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {kits.map((kit: any) => (
+              <div key={kit._id} className="border-b pb-6">
+                <h2 className="text-2xl font-semibold mb-2">{kit.title}</h2>
+                {kit.price && <p className="text-lg font-medium text-gray-800 mb-4">${kit.price}</p>}
+
+                {kit.imageUrl && (
+                  <img
+                    src={kit.imageUrl}
+                    alt={kit.title}
+                    className="w-full max-w-md rounded shadow-md mb-3"
+                  />
+                )}
+
+                {kit.description && (
+                  <p className="text-gray-700">{kit.description}</p>
+                )}
+              </div>
+            ))}
+          </div>
+        )}
+      </main>
+
+      <Footer />
+    </div>
+  )
+}
