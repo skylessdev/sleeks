@@ -24,26 +24,21 @@ export default function Home() {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {drops.map((drop: any) => (
-              <div key={drop._id} className="bg-white rounded-lg shadow-sm border overflow-hidden">
+              <div key={drop._id} className="border-b pb-6">
+                <h2 className="text-2xl font-semibold mb-2">{drop.title}</h2>
+                <p className="text-sm text-gray-500 mb-4">{drop.releaseDate}</p>
+
                 {drop.imageUrl && (
-                  <div className="aspect-square w-full">
-                    <img
-                      src={drop.imageUrl}
-                      alt={drop.title}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
+                  <img
+                    src={drop.imageUrl}
+                    alt={drop.title}
+                    className="w-full max-w-md rounded shadow-md mb-3"
+                  />
                 )}
-                
-                <div className="p-4">
-                  <h2 className="text-lg font-semibold mb-2">{drop.title}</h2>
-                  <p className="text-sm text-gray-500 mb-3">
-                    {new Date(drop.releaseDate).toLocaleDateString()}
-                  </p>
-                  {drop.description && (
-                    <p className="text-gray-700 text-sm">{drop.description}</p>
-                  )}
-                </div>
+
+                {drop.description && (
+                  <p className="text-gray-700">{drop.description}</p>
+                )}
               </div>
             ))}
           </div>
