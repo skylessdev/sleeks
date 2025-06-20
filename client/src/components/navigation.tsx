@@ -46,7 +46,11 @@ export default function Navigation() {
               <Link href="/live-drops" className="w-full">
                 {item}
               </Link>
-            ) : item === "Club Fitters" ? (
+            ) : item === "Club Kits" ? (
+              <Link href="/club-kits" className="w-full">
+                {item}
+              </Link>
+            ) : item === "Apparel" ? (
               <Link href="/apparel" className="w-full">
                 {item}
               </Link>
@@ -59,7 +63,7 @@ export default function Navigation() {
     </DropdownMenu>
   );
 
-  const shopItems = ["New Arrivals", "Club Fitters", "Accessories"];
+  const shopItems = ["New Arrivals", "Club Kits", "Apparel", "Accessories"];
   const clubsItems = ["VIP Membership", "Events", "Community", "Live Drops"];
   const lookbookItems = ["Spring 2024", "Behind the Scenes", "Editorial"];
   const contactItems = ["Customer Service", "Size Guide", "Shipping Info"];
@@ -125,7 +129,11 @@ export default function Navigation() {
                         <div className="pl-4 space-y-2">
                           {shopItems.map((item) => (
                             <div key={item} className="text-sleeks-gray hover:text-sleeks-black font-medium text-xs tracking-wide py-1">
-                              {item === "Club Fitters" ? (
+                              {item === "Club Kits" ? (
+                                <Link href="/club-kits" onClick={() => setIsOpen(false)}>
+                                  {item}
+                                </Link>
+                              ) : item === "Apparel" ? (
                                 <Link href="/apparel" onClick={() => setIsOpen(false)}>
                                   {item}
                                 </Link>
