@@ -54,6 +54,10 @@ export default function Navigation() {
               <Link href="/apparel" className="w-full">
                 {item}
               </Link>
+            ) : item === "Accessories" ? (
+              <Link href="/accessories" className="w-full">
+                {item}
+              </Link>
             ) : (
               item
             )}
@@ -135,6 +139,10 @@ export default function Navigation() {
                                 </Link>
                               ) : item === "Apparel" ? (
                                 <Link href="/apparel" onClick={() => setIsOpen(false)}>
+                                  {item}
+                                </Link>
+                              ) : item === "Accessories" ? (
+                                <Link href="/accessories" onClick={() => setIsOpen(false)}>
                                   {item}
                                 </Link>
                               ) : (
