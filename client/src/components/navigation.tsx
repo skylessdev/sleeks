@@ -33,14 +33,20 @@ export default function Navigation() {
       <DropdownMenuContent align="start" className="w-48">
         {items.map((item) => (
           <DropdownMenuItem key={item} className="text-sleeks-gray hover:text-sleeks-black">
-            {item}
+            {item === "Live Drops" ? (
+              <Link href="/live-drops" className="w-full">
+                {item}
+              </Link>
+            ) : (
+              item
+            )}
           </DropdownMenuItem>
         ))}
       </DropdownMenuContent>
     </DropdownMenu>
   );
 
-  const shopItems = ["New Arrivals", "T-Shirts", "Hoodies", "Accessories"];
+  const shopItems = ["New Arrivals", "T-Shirts", "Hoodies", "Accessories", "Live Drops"];
   const clubsItems = ["VIP Membership", "Events", "Community"];
   const lookbookItems = ["Spring 2024", "Behind the Scenes", "Editorial"];
   const contactItems = ["Customer Service", "Size Guide", "Shipping Info"];
@@ -60,11 +66,6 @@ export default function Navigation() {
           <div className="hidden lg:flex lg:items-center lg:space-x-8">
             <div className="flex items-center space-x-8">
               <NavDropdown title="SHOP" items={shopItems} />
-              <Link href="/live-drops">
-                <Button variant="ghost" className="text-sleeks-gray hover:text-sleeks-black font-medium text-sm tracking-wide h-auto p-0">
-                  LIVE DROPS
-                </Button>
-              </Link>
               <NavDropdown title="CLUBS" items={clubsItems} />
               <NavDropdown title="LOOKBOOK" items={lookbookItems} />
               <NavDropdown title="CONTACT" items={contactItems} />
@@ -95,10 +96,22 @@ export default function Navigation() {
               <SheetContent side="right" className="w-80">
                 <div className="flex flex-col space-y-4 mt-8">
                   <div className="space-y-4">
-                    <div className="text-sleeks-gray hover:text-sleeks-black font-medium text-sm tracking-wide py-2">SHOP</div>
-                    <Link href="/live-drops" onClick={() => setIsOpen(false)}>
-                      <div className="text-sleeks-gray hover:text-sleeks-black font-medium text-sm tracking-wide py-2">LIVE DROPS</div>
-                    </Link>
+                    <div className="space-y-2">
+                      <div className="text-sleeks-gray hover:text-sleeks-black font-medium text-sm tracking-wide py-2">SHOP</div>
+                      <div className="pl-4 space-y-2">
+                        {shopItems.map((item) => (
+                          <div key={item} className="text-sleeks-gray hover:text-sleeks-black font-medium text-xs tracking-wide py-1">
+                            {item === "Live Drops" ? (
+                              <Link href="/live-drops" onClick={() => setIsOpen(false)}>
+                                {item}
+                              </Link>
+                            ) : (
+                              item
+                            )}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
                     <div className="text-sleeks-gray hover:text-sleeks-black font-medium text-sm tracking-wide py-2">CLUBS</div>
                     <div className="text-sleeks-gray hover:text-sleeks-black font-medium text-sm tracking-wide py-2">LOOKBOOK</div>
                     <div className="text-sleeks-gray hover:text-sleeks-black font-medium text-sm tracking-wide py-2">CONTACT</div>
