@@ -112,9 +112,39 @@ export default function Navigation() {
                         ))}
                       </div>
                     </div>
-                    <div className="text-sleeks-gray hover:text-sleeks-black font-medium text-sm tracking-wide py-2">CLUBS</div>
-                    <div className="text-sleeks-gray hover:text-sleeks-black font-medium text-sm tracking-wide py-2">LOOKBOOK</div>
-                    <div className="text-sleeks-gray hover:text-sleeks-black font-medium text-sm tracking-wide py-2">CONTACT</div>
+                    
+                    <div className="space-y-2">
+                      <div className="text-sleeks-gray hover:text-sleeks-black font-medium text-sm tracking-wide py-2">CLUBS</div>
+                      <div className="pl-4 space-y-2">
+                        {clubsItems.map((item) => (
+                          <div key={item} className="text-sleeks-gray hover:text-sleeks-black font-medium text-xs tracking-wide py-1">
+                            {item}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <div className="text-sleeks-gray hover:text-sleeks-black font-medium text-sm tracking-wide py-2">LOOKBOOK</div>
+                      <div className="pl-4 space-y-2">
+                        {lookbookItems.map((item) => (
+                          <div key={item} className="text-sleeks-gray hover:text-sleeks-black font-medium text-xs tracking-wide py-1">
+                            {item}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <div className="text-sleeks-gray hover:text-sleeks-black font-medium text-sm tracking-wide py-2">CONTACT</div>
+                      <div className="pl-4 space-y-2">
+                        {contactItems.map((item) => (
+                          <div key={item} className="text-sleeks-gray hover:text-sleeks-black font-medium text-xs tracking-wide py-1">
+                            {item}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
                   </div>
                   <div className="flex items-center space-x-4 pt-4 border-t border-gray-100">
                     <Button variant="ghost" size="sm" className="text-sleeks-gray hover:text-sleeks-black">
