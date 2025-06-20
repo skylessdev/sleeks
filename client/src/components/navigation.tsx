@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "wouter";
-import { Search, ShoppingCart, Menu, X, ChevronDown } from "lucide-react";
+import { Search, ShoppingCart, Menu, X, ChevronDown, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -13,6 +13,15 @@ import sleeksLogo from "@assets/sleeks-logo.png";
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
+  const [expandedSections, setExpandedSections] = useState<string[]>([]);
+
+  const toggleSection = (section: string) => {
+    setExpandedSections(prev => 
+      prev.includes(section) 
+        ? prev.filter(s => s !== section)
+        : [...prev, section]
+    );
+  };
 
   const SleeksLogo = () => (
     <img 
@@ -97,53 +106,101 @@ export default function Navigation() {
                 <div className="flex flex-col space-y-4 mt-8">
                   <div className="space-y-4">
                     <div className="space-y-2">
-                      <div className="text-sleeks-gray hover:text-sleeks-black font-medium text-sm tracking-wide py-2">SHOP</div>
-                      <div className="pl-4 space-y-2">
-                        {shopItems.map((item) => (
-                          <div key={item} className="text-sleeks-gray hover:text-sleeks-black font-medium text-xs tracking-wide py-1">
-                            {item === "Live Drops" ? (
-                              <Link href="/live-drops" onClick={() => setIsOpen(false)}>
-                                {item}
-                              </Link>
-                            ) : (
-                              item
-                            )}
-                          </div>
-                        ))}
-                      </div>
+                      <Button 
+                        variant="ghost" 
+                        className="w-full justify-between text-sleeks-gray hover:text-sleeks-black font-medium text-sm tracking-wide py-2 px-0 h-auto"
+                        onClick={() => toggleSection('shop')}
+                      >
+                        SHOP
+                        {expandedSections.includes('shop') ? 
+                          <ChevronDown className="h-4 w-4" /> : 
+                          <ChevronRight className="h-4 w-4" />
+                        }
+                      </Button>
+                      {expandedSections.includes('shop') && (
+                        <div className="pl-4 space-y-2">
+                          {shopItems.map((item) => (
+                            <div key={item} className="text-sleeks-gray hover:text-sleeks-black font-medium text-xs tracking-wide py-1">
+                              {item === "Live Drops" ? (
+                                <Link href="/live-drops" onClick={() => setIsOpen(false)}>
+                                  {item}
+                                </Link>
+                              ) : (
+                                item
+                              )}
+                            </div>
+                          ))}
+                        </div>
+                      )}
                     </div>
                     
                     <div className="space-y-2">
-                      <div className="text-sleeks-gray hover:text-sleeks-black font-medium text-sm tracking-wide py-2">CLUBS</div>
-                      <div className="pl-4 space-y-2">
-                        {clubsItems.map((item) => (
-                          <div key={item} className="text-sleeks-gray hover:text-sleeks-black font-medium text-xs tracking-wide py-1">
-                            {item}
-                          </div>
-                        ))}
-                      </div>
+                      <Button 
+                        variant="ghost" 
+                        className="w-full justify-between text-sleeks-gray hover:text-sleeks-black font-medium text-sm tracking-wide py-2 px-0 h-auto"
+                        onClick={() => toggleSection('clubs')}
+                      >
+                        CLUBS
+                        {expandedSections.includes('clubs') ? 
+                          <ChevronDown className="h-4 w-4" /> : 
+                          <ChevronRight className="h-4 w-4" />
+                        }
+                      </Button>
+                      {expandedSections.includes('clubs') && (
+                        <div className="pl-4 space-y-2">
+                          {clubsItems.map((item) => (
+                            <div key={item} className="text-sleeks-gray hover:text-sleeks-black font-medium text-xs tracking-wide py-1">
+                              {item}
+                            </div>
+                          ))}
+                        </div>
+                      )}
                     </div>
                     
                     <div className="space-y-2">
-                      <div className="text-sleeks-gray hover:text-sleeks-black font-medium text-sm tracking-wide py-2">LOOKBOOK</div>
-                      <div className="pl-4 space-y-2">
-                        {lookbookItems.map((item) => (
-                          <div key={item} className="text-sleeks-gray hover:text-sleeks-black font-medium text-xs tracking-wide py-1">
-                            {item}
-                          </div>
-                        ))}
-                      </div>
+                      <Button 
+                        variant="ghost" 
+                        className="w-full justify-between text-sleeks-gray hover:text-sleeks-black font-medium text-sm tracking-wide py-2 px-0 h-auto"
+                        onClick={() => toggleSection('lookbook')}
+                      >
+                        LOOKBOOK
+                        {expandedSections.includes('lookbook') ? 
+                          <ChevronDown className="h-4 w-4" /> : 
+                          <ChevronRight className="h-4 w-4" />
+                        }
+                      </Button>
+                      {expandedSections.includes('lookbook') && (
+                        <div className="pl-4 space-y-2">
+                          {lookbookItems.map((item) => (
+                            <div key={item} className="text-sleeks-gray hover:text-sleeks-black font-medium text-xs tracking-wide py-1">
+                              {item}
+                            </div>
+                          ))}
+                        </div>
+                      )}
                     </div>
                     
                     <div className="space-y-2">
-                      <div className="text-sleeks-gray hover:text-sleeks-black font-medium text-sm tracking-wide py-2">CONTACT</div>
-                      <div className="pl-4 space-y-2">
-                        {contactItems.map((item) => (
-                          <div key={item} className="text-sleeks-gray hover:text-sleeks-black font-medium text-xs tracking-wide py-1">
-                            {item}
-                          </div>
-                        ))}
-                      </div>
+                      <Button 
+                        variant="ghost" 
+                        className="w-full justify-between text-sleeks-gray hover:text-sleeks-black font-medium text-sm tracking-wide py-2 px-0 h-auto"
+                        onClick={() => toggleSection('contact')}
+                      >
+                        CONTACT
+                        {expandedSections.includes('contact') ? 
+                          <ChevronDown className="h-4 w-4" /> : 
+                          <ChevronRight className="h-4 w-4" />
+                        }
+                      </Button>
+                      {expandedSections.includes('contact') && (
+                        <div className="pl-4 space-y-2">
+                          {contactItems.map((item) => (
+                            <div key={item} className="text-sleeks-gray hover:text-sleeks-black font-medium text-xs tracking-wide py-1">
+                              {item}
+                            </div>
+                          ))}
+                        </div>
+                      )}
                     </div>
                   </div>
                   <div className="flex items-center space-x-4 pt-4 border-t border-gray-100">
