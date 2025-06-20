@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import Navigation from '@/components/navigation'
 import HeroSection from '@/components/hero-section'
 import Footer from '@/components/footer'
-import fetchDrops from '../../fetchDrops'
+import { fetchDrops } from '@/lib/fetchDrops'
 
 export default function Home() {
   const [drops, setDrops] = useState([])

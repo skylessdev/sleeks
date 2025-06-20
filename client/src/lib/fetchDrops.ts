@@ -1,4 +1,4 @@
-import { client } from './sanityClient'
+import { client } from '../../../sanityClient'
 
 export async function fetchDrops() {
   const query = `*[_type == "drop"] | order(releaseDate desc){
