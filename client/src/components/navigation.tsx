@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "wouter";
 import { Search, ShoppingCart, Menu, X, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -50,13 +51,20 @@ export default function Navigation() {
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <SleeksLogo />
+            <Link href="/">
+              <SleeksLogo />
+            </Link>
           </div>
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex lg:items-center lg:space-x-8">
             <div className="flex items-center space-x-8">
               <NavDropdown title="SHOP" items={shopItems} />
+              <Link href="/live-drops">
+                <Button variant="ghost" className="text-sleeks-gray hover:text-sleeks-black font-medium text-sm tracking-wide h-auto p-0">
+                  LIVE DROPS
+                </Button>
+              </Link>
               <NavDropdown title="CLUBS" items={clubsItems} />
               <NavDropdown title="LOOKBOOK" items={lookbookItems} />
               <NavDropdown title="CONTACT" items={contactItems} />
@@ -88,6 +96,9 @@ export default function Navigation() {
                 <div className="flex flex-col space-y-4 mt-8">
                   <div className="space-y-4">
                     <div className="text-sleeks-gray hover:text-sleeks-black font-medium text-sm tracking-wide py-2">SHOP</div>
+                    <Link href="/live-drops" onClick={() => setIsOpen(false)}>
+                      <div className="text-sleeks-gray hover:text-sleeks-black font-medium text-sm tracking-wide py-2">LIVE DROPS</div>
+                    </Link>
                     <div className="text-sleeks-gray hover:text-sleeks-black font-medium text-sm tracking-wide py-2">CLUBS</div>
                     <div className="text-sleeks-gray hover:text-sleeks-black font-medium text-sm tracking-wide py-2">LOOKBOOK</div>
                     <div className="text-sleeks-gray hover:text-sleeks-black font-medium text-sm tracking-wide py-2">CONTACT</div>
