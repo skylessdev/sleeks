@@ -108,7 +108,7 @@
 
 /* Hero image positioning */
 .hero-bg {
-  background-position: center center;
+  background-position: center 30%;
   background-size: cover;
   background-repeat: no-repeat;
 }
