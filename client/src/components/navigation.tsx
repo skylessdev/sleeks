@@ -46,7 +46,7 @@ export default function Navigation() {
               <Link href="/live-drops" className="w-full">
                 {item}
               </Link>
-            ) : item === "Apparel" ? (
+            ) : item === "Club Fitters" ? (
               <Link href="/apparel" className="w-full">
                 {item}
               </Link>
@@ -59,8 +59,8 @@ export default function Navigation() {
     </DropdownMenu>
   );
 
-  const shopItems = ["New Arrivals", "Apparel", "Accessories", "Live Drops"];
-  const clubsItems = ["VIP Membership", "Events", "Community"];
+  const shopItems = ["New Arrivals", "Club Fitters", "Accessories"];
+  const clubsItems = ["VIP Membership", "Events", "Community", "Live Drops"];
   const lookbookItems = ["Spring 2024", "Behind the Scenes", "Editorial"];
   const contactItems = ["Customer Service", "Size Guide", "Shipping Info"];
 
@@ -125,11 +125,7 @@ export default function Navigation() {
                         <div className="pl-4 space-y-2">
                           {shopItems.map((item) => (
                             <div key={item} className="text-sleeks-gray hover:text-sleeks-black font-medium text-xs tracking-wide py-1">
-                              {item === "Live Drops" ? (
-                                <Link href="/live-drops" onClick={() => setIsOpen(false)}>
-                                  {item}
-                                </Link>
-                              ) : item === "Apparel" ? (
+                              {item === "Club Fitters" ? (
                                 <Link href="/apparel" onClick={() => setIsOpen(false)}>
                                   {item}
                                 </Link>
@@ -158,7 +154,13 @@ export default function Navigation() {
                         <div className="pl-4 space-y-2">
                           {clubsItems.map((item) => (
                             <div key={item} className="text-sleeks-gray hover:text-sleeks-black font-medium text-xs tracking-wide py-1">
-                              {item}
+                              {item === "Live Drops" ? (
+                                <Link href="/live-drops" onClick={() => setIsOpen(false)}>
+                                  {item}
+                                </Link>
+                              ) : (
+                                item
+                              )}
                             </div>
                           ))}
                         </div>
