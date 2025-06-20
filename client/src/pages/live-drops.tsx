@@ -14,7 +14,7 @@ export default function LiveDrops() {
     <div className="min-h-screen bg-white">
       <Navigation />
       
-      <main className="max-w-4xl mx-auto px-4 py-12">
+      <main className="max-w-4xl mx-auto px-4 py-12 pt-24">
         <h1 className="text-3xl font-bold mb-6">Live Drops</h1>
 
         {drops.length === 0 ? (
