@@ -23,8 +23,8 @@ export default function Apparel() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {kits.map((kit: any) => (
               <div key={kit._id} className="border-b pb-6">
-                <h2 className="text-2xl font-semibold mb-2">{kit.title}</h2>
-                {kit.price && <p className="text-lg font-medium text-gray-800 mb-4">${kit.price}</p>}
+                <h2 className="text-2xl font-semibold mb-2">{kit.kitName}</h2>
+                {kit.priceZAR && <p className="text-lg font-medium text-gray-800 mb-4">R{kit.priceZAR}</p>}
 
                 {kit.imageUrl && (
                   <img
@@ -34,8 +34,23 @@ export default function Apparel() {
                   />
                 )}
 
-                {kit.description && (
-                  <p className="text-gray-700">{kit.description}</p>
+                {kit.unitsIncluded && (
+                  <p className="text-sm text-gray-600 mb-2">Units: {kit.unitsIncluded}</p>
+                )}
+
+                {kit.displayType && (
+                  <p className="text-sm text-gray-600 mb-4">Display: {kit.displayType}</p>
+                )}
+
+                {kit.buyNowLink && (
+                  <a 
+                    href={kit.buyNowLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block bg-sleeks-black text-white px-6 py-2 rounded hover:bg-gray-800 transition-colors duration-200"
+                  >
+                    Buy Now
+                  </a>
                 )}
               </div>
             ))}
