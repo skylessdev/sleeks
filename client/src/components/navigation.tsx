@@ -55,7 +55,7 @@ export default function Navigation() {
     </DropdownMenu>
   );
 
-  const shopItems = ["New Arrivals", "T-Shirts", "Hoodies", "Accessories", "Live Drops"];
+  const shopItems = ["New Arrivals", "Apparel", "Accessories", "Live Drops"];
   const clubsItems = ["VIP Membership", "Events", "Community"];
   const lookbookItems = ["Spring 2024", "Behind the Scenes", "Editorial"];
   const contactItems = ["Customer Service", "Size Guide", "Shipping Info"];

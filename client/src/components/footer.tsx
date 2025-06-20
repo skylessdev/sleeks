@@ -17,31 +17,6 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Business Contacts */}
-          <div className="space-y-3">
-            <h3 className="font-semibold text-lg text-white">Business</h3>
-            <div className="space-y-2 text-gray-300">
-              <div>
-                <p className="text-sm text-gray-400">Partners:</p>
-                <a 
-                  href="mailto:partners@sleeks.co.za" 
-                  className="text-sm hover:text-white transition-colors duration-200"
-                >
-                  partners@sleeks.co.za
-                </a>
-              </div>
-              <div>
-                <p className="text-sm text-gray-400">Press Team:</p>
-                <a 
-                  href="mailto:press@sleeks.co.za" 
-                  className="text-sm hover:text-white transition-colors duration-200"
-                >
-                  press@sleeks.co.za
-                </a>
-              </div>
-            </div>
-          </div>
-
           {/* UK */}
           <div className="space-y-3">
             <h3 className="font-semibold text-lg text-white">UK</h3>
@@ -67,6 +42,31 @@ export default function Footer() {
               >
                 us@sleeksappeal.com
               </a>
+            </div>
+          </div>
+
+          {/* Business Contacts */}
+          <div className="space-y-3">
+            <h3 className="font-semibold text-lg text-white">Business</h3>
+            <div className="space-y-2 text-gray-300">
+              <div>
+                <p className="text-sm text-gray-400">Partners:</p>
+                <a 
+                  href="mailto:partners@sleeks.co.za" 
+                  className="text-sm hover:text-white transition-colors duration-200"
+                >
+                  partners@sleeks.co.za
+                </a>
+              </div>
+              <div>
+                <p className="text-sm text-gray-400">Press Team:</p>
+                <a 
+                  href="mailto:press@sleeks.co.za" 
+                  className="text-sm hover:text-white transition-colors duration-200"
+                >
+                  press@sleeks.co.za
+                </a>
+              </div>
             </div>
           </div>
         </div>
