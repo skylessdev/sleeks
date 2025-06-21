@@ -34,7 +34,7 @@ export default function ClubKits() {
                   />
                 )}
 
-                {kit.buyLink && (
+                {kit.buyLink ? (
                   <a 
                     href={kit.buyLink}
                     target="_blank"
@@ -43,6 +43,13 @@ export default function ClubKits() {
                   >
                     Buy Now
                   </a>
+                ) : (
+                  <button 
+                    disabled
+                    className="inline-block bg-gray-400 text-white px-6 py-2 rounded cursor-not-allowed opacity-75"
+                  >
+                    Coming Soon
+                  </button>
                 )}
               </div>
             ))}

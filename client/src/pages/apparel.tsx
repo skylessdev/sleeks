@@ -34,7 +34,7 @@ export default function Apparel() {
                   />
                 )}
 
-                {item.buyLink && (
+                {item.buyLink ? (
                   <a 
                     href={item.buyLink}
                     target="_blank"
@@ -43,6 +43,13 @@ export default function Apparel() {
                   >
                     Buy Now
                   </a>
+                ) : (
+                  <button 
+                    disabled
+                    className="inline-block bg-gray-400 text-white px-6 py-2 rounded cursor-not-allowed opacity-75"
+                  >
+                    Coming Soon
+                  </button>
                 )}
               </div>
             ))}
