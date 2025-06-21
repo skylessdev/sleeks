@@ -20,43 +20,30 @@ export default function Apparel() {
         {apparel.length === 0 ? (
           <p className="text-gray-500">No apparel available.</p>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {apparel.map((item: any) => (
-              <div key={item._id} className="bg-gray-50 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
-                {item.imageUrl ? (
+              <div key={item._id} className="border-b pb-6">
+                <h2 className="text-2xl font-semibold mb-2">{item.name}</h2>
+                {item.price && <p className="text-lg font-medium text-gray-800 mb-4">R{item.price}</p>}
+
+                {item.imageUrl && (
                   <img
                     src={item.imageUrl}
                     alt={item.name}
-                    className="w-full h-64 object-cover"
+                    className="w-full max-w-md rounded shadow-md mb-3"
                   />
-                ) : (
-                  <div className="w-full h-64 bg-gray-200 flex items-center justify-center">
-                    <div className="text-center text-gray-500">
-                      <svg className="w-16 h-16 mx-auto mb-2" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clipRule="evenodd" />
-                      </svg>
-                      <p className="text-sm">Image coming soon</p>
-                    </div>
-                  </div>
                 )}
-                
-                <div className="p-6">
-                  <h2 className="text-xl font-semibold mb-2">{item.name}</h2>
-                  {item.price && <p className="text-lg font-medium text-gray-800 mb-4">R{item.price}</p>}
 
-                  {item.buyLink ? (
-                    <a 
-                      href={item.buyLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-block bg-black text-white px-6 py-2 rounded hover:bg-gray-800 transition-colors duration-200"
-                    >
-                      Buy Now
-                    </a>
-                  ) : (
-                    <p className="text-gray-500 text-sm">Coming soon</p>
-                  )}
-                </div>
+                {item.buyLink && (
+                  <a 
+                    href={item.buyLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block bg-sleeks-black text-white px-6 py-2 rounded hover:bg-gray-800 transition-colors duration-200"
+                  >
+                    Buy Now
+                  </a>
+                )}
               </div>
             ))}
           </div>
