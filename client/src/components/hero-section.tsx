@@ -1,4 +1,4 @@
-import jumpImage from "@assets/jump_1750549326901.png";
+import sleeksImage from "@assets/44B06E61-2D31-49E1-94F6-CD8B31F1F632_1750374904450.png";
 
 export default function HeroSection() {
   return (
@@ -7,7 +7,7 @@ export default function HeroSection() {
         <div 
           className="absolute inset-0 hero-bg"
           style={{ 
-            backgroundImage: `url(${jumpImage})` 
+            backgroundImage: `url(${sleeksImage})` 
           }}
         />
       </section>
