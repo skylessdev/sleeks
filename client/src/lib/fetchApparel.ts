@@ -7,8 +7,8 @@ export async function fetchApparel() {
         _id,
         name,
         price,
-        "imageUrl": image.asset->url,
-        buyLink
+        buyLink,
+        "imageUrl": productImage.asset->url
       }
     `;
     
