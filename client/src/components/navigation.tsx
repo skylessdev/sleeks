@@ -193,26 +193,14 @@ export default function Navigation() {
                     </div>
                     
                     <div className="space-y-2">
-                      <Button 
-                        variant="ghost" 
-                        className="w-full justify-between text-sleeks-gray hover:text-sleeks-black font-medium text-sm tracking-wide py-2 px-0 h-auto"
-                        onClick={() => toggleSection('lookbook')}
-                      >
-                        LOOKBOOK
-                        {expandedSections.includes('lookbook') ? 
-                          <ChevronDown className="h-4 w-4" /> : 
-                          <ChevronRight className="h-4 w-4" />
-                        }
-                      </Button>
-                      {expandedSections.includes('lookbook') && (
-                        <div className="pl-4 space-y-2">
-                          {lookbookItems.map((item) => (
-                            <div key={item} className="text-sleeks-gray hover:text-sleeks-black font-medium text-xs tracking-wide py-1">
-                              {item}
-                            </div>
-                          ))}
-                        </div>
-                      )}
+                      <Link href="/lookbook" onClick={() => setIsOpen(false)}>
+                        <Button 
+                          variant="ghost" 
+                          className="w-full justify-start text-sleeks-gray hover:text-sleeks-black font-medium text-sm tracking-wide py-2 px-0 h-auto"
+                        >
+                          LOOKBOOK
+                        </Button>
+                      </Link>
                     </div>
                     
                     <div className="space-y-2">
