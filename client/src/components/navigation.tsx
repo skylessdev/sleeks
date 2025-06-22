@@ -31,13 +31,22 @@ export default function Navigation() {
     />
   );
 
-  const NavDropdown = ({ title, items }: { title: string; items: string[] }) => (
+  const NavDropdown = ({ title, items, href }: { title: string; items: string[]; href?: string }) => (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" className="text-sleeks-gray hover:text-sleeks-black font-medium text-sm tracking-wide h-auto p-0 gap-1">
-          {title}
-          <ChevronDown className="h-3 w-3" />
-        </Button>
+        {href ? (
+          <Link href={href}>
+            <Button variant="ghost" className="text-sleeks-gray hover:text-sleeks-black font-medium text-sm tracking-wide h-auto p-0 gap-1">
+              {title}
+              <ChevronDown className="h-3 w-3" />
+            </Button>
+          </Link>
+        ) : (
+          <Button variant="ghost" className="text-sleeks-gray hover:text-sleeks-black font-medium text-sm tracking-wide h-auto p-0 gap-1">
+            {title}
+            <ChevronDown className="h-3 w-3" />
+          </Button>
+        )}
       </DropdownMenuTrigger>
       <DropdownMenuContent align="start" className="w-48">
         {items.map((item) => (
@@ -88,7 +97,7 @@ export default function Navigation() {
             <div className="flex items-center space-x-8">
               <NavDropdown title="SHOP" items={shopItems} />
               <NavDropdown title="CLUBS" items={clubsItems} />
-              <NavDropdown title="LOOKBOOK" items={lookbookItems} />
+              <NavDropdown title="LOOKBOOK" items={lookbookItems} href="/lookbook" />
               <NavDropdown title="CONTACT" items={contactItems} />
             </div>
 
