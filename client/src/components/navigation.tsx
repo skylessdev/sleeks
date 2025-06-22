@@ -31,22 +31,13 @@ export default function Navigation() {
     />
   );
 
-  const NavDropdown = ({ title, items, href }: { title: string; items: string[]; href?: string }) => (
+  const NavDropdown = ({ title, items }: { title: string; items: string[] }) => (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        {href ? (
-          <Link href={href}>
-            <Button variant="ghost" className="text-sleeks-gray hover:text-sleeks-black font-medium text-sm tracking-wide h-auto p-0 gap-1">
-              {title}
-              <ChevronDown className="h-3 w-3" />
-            </Button>
-          </Link>
-        ) : (
-          <Button variant="ghost" className="text-sleeks-gray hover:text-sleeks-black font-medium text-sm tracking-wide h-auto p-0 gap-1">
-            {title}
-            <ChevronDown className="h-3 w-3" />
-          </Button>
-        )}
+        <Button variant="ghost" className="text-sleeks-gray hover:text-sleeks-black font-medium text-sm tracking-wide h-auto p-0 gap-1">
+          {title}
+          <ChevronDown className="h-3 w-3" />
+        </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="start" className="w-48">
         {items.map((item) => (
@@ -97,7 +88,7 @@ export default function Navigation() {
             <div className="flex items-center space-x-8">
               <NavDropdown title="SHOP" items={shopItems} />
               <NavDropdown title="CLUBS" items={clubsItems} />
-              <NavDropdown title="LOOKBOOK" items={lookbookItems} href="/lookbook" />
+              <NavDropdown title="LOOKBOOK" items={lookbookItems} />
               <NavDropdown title="CONTACT" items={contactItems} />
             </div>
 
@@ -193,14 +184,26 @@ export default function Navigation() {
                     </div>
                     
                     <div className="space-y-2">
-                      <Link href="/lookbook" onClick={() => setIsOpen(false)}>
-                        <Button 
-                          variant="ghost" 
-                          className="w-full justify-start text-sleeks-gray hover:text-sleeks-black font-medium text-sm tracking-wide py-2 px-0 h-auto"
-                        >
-                          LOOKBOOK
-                        </Button>
-                      </Link>
+                      <Button 
+                        variant="ghost" 
+                        className="w-full justify-between text-sleeks-gray hover:text-sleeks-black font-medium text-sm tracking-wide py-2 px-0 h-auto"
+                        onClick={() => toggleSection('lookbook')}
+                      >
+                        LOOKBOOK
+                        {expandedSections.includes('lookbook') ? 
+                          <ChevronDown className="h-4 w-4" /> : 
+                          <ChevronRight className="h-4 w-4" />
+                        }
+                      </Button>
+                      {expandedSections.includes('lookbook') && (
+                        <div className="pl-4 space-y-2">
+                          {lookbookItems.map((item) => (
+                            <div key={item} className="text-sleeks-gray hover:text-sleeks-black font-medium text-xs tracking-wide py-1">
+                              {item}
+                            </div>
+                          ))}
+                        </div>
+                      )}
                     </div>
                     
                     <div className="space-y-2">
