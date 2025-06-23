@@ -6,7 +6,7 @@ export default (S) =>
     .items([
       S.documentTypeListItem('drop'),
       S.documentTypeListItem('kit'),
-      S.documentTypeListItem('lookbookImage'),
+      S.documentTypeListItem('lookbook'),
       S.documentTypeListItem('apparel'),
       S.documentTypeListItem('accessories'),
     ])

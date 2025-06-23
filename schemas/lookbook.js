@@ -1,6 +1,6 @@
 export default {
-  name: 'lookbookImage',
-  title: 'Lookbook Image',
+  name: 'lookbook',
+  title: 'Lookbook',
   type: 'document',
   fields: [
     { name: 'title', type: 'string', title: 'Caption' },
