@@ -5,9 +5,13 @@ import { fetchDrops } from '@/lib/fetchDrops'
 
 export default function LiveDrops() {
   const [drops, setDrops] = useState([])
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    fetchDrops().then(setDrops)
+    fetchDrops().then((data) => {
+      setDrops(data)
+      setLoading(false)
+    })
   }, [])
 
   return (
@@ -17,7 +21,9 @@ export default function LiveDrops() {
       <main className="max-w-4xl mx-auto px-4 py-12 pt-24">
         <h1 className="text-3xl font-bold mb-6">Live Drops</h1>
 
-        {drops.length === 0 ? (
+        {loading ? (
+          <p className="text-gray-500">Loading drops...</p>
+        ) : drops.length === 0 ? (
           <p className="text-gray-500">No drops available.</p>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

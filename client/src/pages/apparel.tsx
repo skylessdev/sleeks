@@ -5,9 +5,13 @@ import { fetchApparel } from '@/lib/fetchApparel'
 
 export default function Apparel() {
   const [apparel, setApparel] = useState([])
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    fetchApparel().then(setApparel)
+    fetchApparel().then((data) => {
+      setApparel(data)
+      setLoading(false)
+    })
   }, [])
 
   return (
@@ -17,7 +21,9 @@ export default function Apparel() {
       <main className="max-w-4xl mx-auto px-4 py-12 pt-24">
         <h1 className="text-3xl font-bold mb-6">Apparel</h1>
 
-        {apparel.length === 0 ? (
+        {loading ? (
+          <p className="text-gray-500">Loading apparel...</p>
+        ) : apparel.length === 0 ? (
           <p className="text-gray-500">No apparel available.</p>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

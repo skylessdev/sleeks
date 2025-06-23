@@ -5,9 +5,13 @@ import { fetchAccessories } from '@/lib/fetchAccessories'
 
 export default function Accessories() {
   const [accessories, setAccessories] = useState([])
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    fetchAccessories().then(setAccessories)
+    fetchAccessories().then((data) => {
+      setAccessories(data)
+      setLoading(false)
+    })
   }, [])
 
   return (
@@ -17,7 +21,9 @@ export default function Accessories() {
       <main className="max-w-4xl mx-auto px-4 py-12 pt-24">
         <h1 className="text-3xl font-bold mb-6">Accessories</h1>
 
-        {accessories.length === 0 ? (
+        {loading ? (
+          <p className="text-gray-500">Loading accessories...</p>
+        ) : accessories.length === 0 ? (
           <p className="text-gray-500">No accessories available.</p>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
