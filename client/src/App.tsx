@@ -8,7 +8,6 @@ import LiveDrops from "@/pages/live-drops";
 import ClubKits from "@/pages/club-kits";
 import Apparel from "@/pages/apparel";
 import Accessories from "@/pages/accessories";
-import Lookbook from "@/pages/lookbook";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -19,7 +18,6 @@ function Router() {
       <Route path="/club-kits" component={ClubKits} />
       <Route path="/apparel" component={Apparel} />
       <Route path="/accessories" component={Accessories} />
-      <Route path="/lookbook" component={Lookbook} />
       <Route component={NotFound} />
     </Switch>
   );

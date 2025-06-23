@@ -69,6 +69,7 @@ export default function Navigation() {
 
   const shopItems = ["New Arrivals", "Club Kits", "Apparel", "Accessories"];
   const clubsItems = ["VIP Membership", "Events", "Community", "Live Drops"];
+  const lookbookItems = ["Spring 2024", "Behind the Scenes", "Editorial"];
   const contactItems = ["Customer Service", "Size Guide", "Shipping Info"];
 
   return (
@@ -87,7 +88,7 @@ export default function Navigation() {
             <div className="flex items-center space-x-8">
               <NavDropdown title="SHOP" items={shopItems} />
               <NavDropdown title="CLUBS" items={clubsItems} />
-              {/* Action Icons */}
+              <NavDropdown title="LOOKBOOK" items={lookbookItems} />
               <NavDropdown title="CONTACT" items={contactItems} />
             </div>
 
@@ -152,7 +153,7 @@ export default function Navigation() {
                         </div>
                       )}
                     </div>
-
+                    
                     <div className="space-y-2">
                       <Button 
                         variant="ghost" 
@@ -181,7 +182,30 @@ export default function Navigation() {
                         </div>
                       )}
                     </div>
-
+                    
+                    <div className="space-y-2">
+                      <Button 
+                        variant="ghost" 
+                        className="w-full justify-between text-sleeks-gray hover:text-sleeks-black font-medium text-sm tracking-wide py-2 px-0 h-auto"
+                        onClick={() => toggleSection('lookbook')}
+                      >
+                        LOOKBOOK
+                        {expandedSections.includes('lookbook') ? 
+                          <ChevronDown className="h-4 w-4" /> : 
+                          <ChevronRight className="h-4 w-4" />
+                        }
+                      </Button>
+                      {expandedSections.includes('lookbook') && (
+                        <div className="pl-4 space-y-2">
+                          {lookbookItems.map((item) => (
+                            <div key={item} className="text-sleeks-gray hover:text-sleeks-black font-medium text-xs tracking-wide py-1">
+                              {item}
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                    
                     <div className="space-y-2">
                       <Button 
                         variant="ghost" 
