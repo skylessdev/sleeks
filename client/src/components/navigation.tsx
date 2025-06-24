@@ -123,7 +123,7 @@ export default function Navigation() {
                       href="https://sleeks-studio.replit.app/" 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className="text-2xl font-light tracking-wider text-black hover:text-gray-600 transition-colors duration-200 py-2 cursor-pointer block"
+                      className="inline-block bg-black text-white px-6 py-3 text-xl font-light tracking-wider hover:bg-gray-800 transition-colors duration-200 cursor-pointer"
                     >
                       STUDIO
                     </a>
