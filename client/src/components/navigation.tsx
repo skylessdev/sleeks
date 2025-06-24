@@ -119,9 +119,14 @@ export default function Navigation() {
                     <div className="text-2xl font-light tracking-wider text-black hover:text-gray-600 transition-colors duration-200 py-2 cursor-pointer">
                       LOOKBOOK
                     </div>
-                    <div className="text-2xl font-light tracking-wider text-black hover:text-gray-600 transition-colors duration-200 py-2 cursor-pointer">
-                      COMMUNITY
-                    </div>
+                    <a 
+                      href="https://sleeks-studio.replit.app/" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-2xl font-light tracking-wider text-black hover:text-gray-600 transition-colors duration-200 py-2 cursor-pointer block"
+                    >
+                      STUDIO
+                    </a>
                   </div>
                 </div>
               </div>
