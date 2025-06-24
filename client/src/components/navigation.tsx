@@ -1,27 +1,11 @@
 import { useState } from "react";
 import { Link } from "wouter";
-import { Search, ShoppingCart, Menu, X, ChevronDown, ChevronRight } from "lucide-react";
+import { Search, ShoppingCart, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import sleeksLogo from "@assets/sleeks-logo.png";
 
 export default function Navigation() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [expandedSections, setExpandedSections] = useState<string[]>([]);
-
-  const toggleSection = (section: string) => {
-    setExpandedSections(prev => 
-      prev.includes(section) 
-        ? prev.filter(s => s !== section)
-        : [...prev, section]
-    );
-  };
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const SleeksLogo = () => (
     <img 
@@ -31,221 +15,160 @@ export default function Navigation() {
     />
   );
 
-  const NavDropdown = ({ title, items }: { title: string; items: string[] }) => (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button variant="ghost" className="text-sleeks-gray hover:text-sleeks-black font-medium text-sm tracking-wide h-auto p-0 gap-1">
-          {title}
-          <ChevronDown className="h-3 w-3" />
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align="start" className="w-48">
-        {items.map((item) => (
-          <DropdownMenuItem key={item} className="text-sleeks-gray hover:text-sleeks-black">
-            {item === "Live Drops" ? (
-              <Link href="/live-drops" className="w-full">
-                {item}
-              </Link>
-            ) : item === "Club Kits" ? (
-              <Link href="/club-kits" className="w-full">
-                {item}
-              </Link>
-            ) : item === "Apparel" ? (
-              <Link href="/apparel" className="w-full">
-                {item}
-              </Link>
-            ) : item === "Accessories" ? (
-              <Link href="/accessories" className="w-full">
-                {item}
-              </Link>
-            ) : (
-              item
-            )}
-          </DropdownMenuItem>
-        ))}
-      </DropdownMenuContent>
-    </DropdownMenu>
+  const MenuLink = ({ href, children, onClick }: { href: string; children: React.ReactNode; onClick?: () => void }) => (
+    <Link href={href} onClick={onClick}>
+      <div className="text-2xl font-light tracking-wider text-black hover:text-gray-600 transition-colors duration-200 py-2">
+        {children}
+      </div>
+    </Link>
   );
 
-  const shopItems = ["New Arrivals", "Club Kits", "Apparel", "Accessories"];
-  const clubsItems = ["VIP Membership", "Events", "Community", "Live Drops"];
-  const lookbookItems = ["Spring 2024", "Behind the Scenes", "Editorial"];
-  const contactItems = ["Customer Service", "Size Guide", "Shipping Info"];
-
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-100">
-      <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 lg:h-20">
-          {/* Logo */}
-          <div className="flex-shrink-0">
-            <Link href="/">
-              <SleeksLogo />
-            </Link>
-          </div>
+    <>
+      {/* Top bar */}
+      <div className="fixed top-0 left-0 right-0 z-50 bg-black text-white text-center py-2 text-xs tracking-widest">
+        COMPLIMENTARY STANDARD SHIPPING
+        <button className="absolute right-4 top-2 text-white hover:text-gray-300">
+          <X className="h-3 w-3" />
+        </button>
+      </div>
 
-          {/* Desktop Navigation */}
-          <div className="hidden lg:flex lg:items-center lg:space-x-8">
-            <div className="flex items-center space-x-8">
-              <NavDropdown title="SHOP" items={shopItems} />
-              <NavDropdown title="CLUBS" items={clubsItems} />
-              <NavDropdown title="LOOKBOOK" items={lookbookItems} />
-              <NavDropdown title="CONTACT" items={contactItems} />
+      {/* Main Navigation */}
+      <nav className="fixed top-8 left-0 right-0 z-40 bg-white border-b border-gray-100">
+        <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16 lg:h-20">
+            {/* Menu Button */}
+            <Button 
+              variant="ghost" 
+              onClick={() => setIsMenuOpen(true)}
+              className="text-black hover:text-gray-600 p-0 h-auto font-light tracking-widest text-sm"
+            >
+              <Menu className="h-5 w-5 mr-2" />
+              MENU
+            </Button>
+
+            {/* Logo */}
+            <div className="absolute left-1/2 transform -translate-x-1/2">
+              <Link href="/">
+                <SleeksLogo />
+              </Link>
             </div>
 
             {/* Action Icons */}
-            <div className="flex items-center space-x-4 ml-8">
-              <Button variant="ghost" size="sm" className="text-sleeks-gray hover:text-sleeks-black p-2">
+            <div className="flex items-center space-x-4">
+              <Button variant="ghost" size="sm" className="text-black hover:text-gray-600 p-2">
                 <Search className="h-5 w-5" />
               </Button>
-              <Button variant="ghost" size="sm" className="text-sleeks-gray hover:text-sleeks-black p-2 relative">
+              <Button variant="ghost" size="sm" className="text-black hover:text-gray-600 p-2 relative">
                 <ShoppingCart className="h-5 w-5" />
-                <span className="absolute -top-1 -right-1 bg-sleeks-black text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                <span className="absolute -top-1 -right-1 bg-black text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
                   2
                 </span>
               </Button>
             </div>
           </div>
+        </div>
+      </nav>
 
-          {/* Mobile Menu */}
-          <div className="lg:hidden">
-            <Sheet open={isOpen} onOpenChange={setIsOpen}>
-              <SheetTrigger asChild>
-                <Button variant="ghost" size="sm" className="text-sleeks-gray hover:text-sleeks-black">
-                  {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-                </Button>
-              </SheetTrigger>
-              <SheetContent side="right" className="w-80">
-                <div className="flex flex-col space-y-4 mt-8">
-                  <div className="space-y-4">
-                    <div className="space-y-2">
-                      <Button 
-                        variant="ghost" 
-                        className="w-full justify-between text-sleeks-gray hover:text-sleeks-black font-medium text-sm tracking-wide py-2 px-0 h-auto"
-                        onClick={() => toggleSection('shop')}
-                      >
-                        SHOP
-                        {expandedSections.includes('shop') ? 
-                          <ChevronDown className="h-4 w-4" /> : 
-                          <ChevronRight className="h-4 w-4" />
-                        }
-                      </Button>
-                      {expandedSections.includes('shop') && (
-                        <div className="pl-4 space-y-2">
-                          {shopItems.map((item) => (
-                            <div key={item} className="text-sleeks-gray hover:text-sleeks-black font-medium text-xs tracking-wide py-1">
-                              {item === "Club Kits" ? (
-                                <Link href="/club-kits" onClick={() => setIsOpen(false)}>
-                                  {item}
-                                </Link>
-                              ) : item === "Apparel" ? (
-                                <Link href="/apparel" onClick={() => setIsOpen(false)}>
-                                  {item}
-                                </Link>
-                              ) : item === "Accessories" ? (
-                                <Link href="/accessories" onClick={() => setIsOpen(false)}>
-                                  {item}
-                                </Link>
-                              ) : (
-                                item
-                              )}
-                            </div>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                    
-                    <div className="space-y-2">
-                      <Button 
-                        variant="ghost" 
-                        className="w-full justify-between text-sleeks-gray hover:text-sleeks-black font-medium text-sm tracking-wide py-2 px-0 h-auto"
-                        onClick={() => toggleSection('clubs')}
-                      >
-                        CLUBS
-                        {expandedSections.includes('clubs') ? 
-                          <ChevronDown className="h-4 w-4" /> : 
-                          <ChevronRight className="h-4 w-4" />
-                        }
-                      </Button>
-                      {expandedSections.includes('clubs') && (
-                        <div className="pl-4 space-y-2">
-                          {clubsItems.map((item) => (
-                            <div key={item} className="text-sleeks-gray hover:text-sleeks-black font-medium text-xs tracking-wide py-1">
-                              {item === "Live Drops" ? (
-                                <Link href="/live-drops" onClick={() => setIsOpen(false)}>
-                                  {item}
-                                </Link>
-                              ) : (
-                                item
-                              )}
-                            </div>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                    
-                    <div className="space-y-2">
-                      <Button 
-                        variant="ghost" 
-                        className="w-full justify-between text-sleeks-gray hover:text-sleeks-black font-medium text-sm tracking-wide py-2 px-0 h-auto"
-                        onClick={() => toggleSection('lookbook')}
-                      >
-                        LOOKBOOK
-                        {expandedSections.includes('lookbook') ? 
-                          <ChevronDown className="h-4 w-4" /> : 
-                          <ChevronRight className="h-4 w-4" />
-                        }
-                      </Button>
-                      {expandedSections.includes('lookbook') && (
-                        <div className="pl-4 space-y-2">
-                          {lookbookItems.map((item) => (
-                            <div key={item} className="text-sleeks-gray hover:text-sleeks-black font-medium text-xs tracking-wide py-1">
-                              {item}
-                            </div>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                    
-                    <div className="space-y-2">
-                      <Button 
-                        variant="ghost" 
-                        className="w-full justify-between text-sleeks-gray hover:text-sleeks-black font-medium text-sm tracking-wide py-2 px-0 h-auto"
-                        onClick={() => toggleSection('contact')}
-                      >
-                        CONTACT
-                        {expandedSections.includes('contact') ? 
-                          <ChevronDown className="h-4 w-4" /> : 
-                          <ChevronRight className="h-4 w-4" />
-                        }
-                      </Button>
-                      {expandedSections.includes('contact') && (
-                        <div className="pl-4 space-y-2">
-                          {contactItems.map((item) => (
-                            <div key={item} className="text-sleeks-gray hover:text-sleeks-black font-medium text-xs tracking-wide py-1">
-                              {item}
-                            </div>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                  <div className="flex items-center space-x-4 pt-4 border-t border-gray-100">
-                    <Button variant="ghost" size="sm" className="text-sleeks-gray hover:text-sleeks-black">
-                      <Search className="h-5 w-5" />
-                    </Button>
-                    <Button variant="ghost" size="sm" className="text-sleeks-gray hover:text-sleeks-black relative">
-                      <ShoppingCart className="h-5 w-5" />
-                      <span className="absolute -top-1 -right-1 bg-sleeks-black text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
-                        2
-                      </span>
-                    </Button>
+      {/* Full Screen Menu Overlay */}
+      {isMenuOpen && (
+        <div className="fixed inset-0 z-50 bg-white">
+          <div className="flex flex-col h-full">
+            {/* Menu Header */}
+            <div className="flex items-center justify-between p-6 border-b border-gray-100">
+              <div className="flex items-center">
+                <SleeksLogo />
+              </div>
+              <Button 
+                variant="ghost" 
+                onClick={() => setIsMenuOpen(false)}
+                className="text-black hover:text-gray-600 p-2"
+              >
+                <X className="h-6 w-6" />
+              </Button>
+            </div>
+
+            {/* Menu Content */}
+            <div className="flex-1 flex">
+              {/* Left Section - Main Navigation */}
+              <div className="flex-1 p-6 space-y-6">
+                <div>
+                  <h3 className="text-xs font-medium tracking-widest text-gray-500 mb-4 uppercase">COLLECTIONS</h3>
+                  <div className="space-y-1">
+                    <MenuLink href="/club-kits" onClick={() => setIsMenuOpen(false)}>
+                      CLUB KITS
+                    </MenuLink>
+                    <MenuLink href="/apparel" onClick={() => setIsMenuOpen(false)}>
+                      APPAREL
+                    </MenuLink>
+                    <MenuLink href="/accessories" onClick={() => setIsMenuOpen(false)}>
+                      ACCESSORIES
+                    </MenuLink>
+                    <MenuLink href="/live-drops" onClick={() => setIsMenuOpen(false)}>
+                      LIVE DROPS
+                    </MenuLink>
                   </div>
                 </div>
-              </SheetContent>
-            </Sheet>
+
+                <div>
+                  <h3 className="text-xs font-medium tracking-widest text-gray-500 mb-4 uppercase">BRAND</h3>
+                  <div className="space-y-1">
+                    <div className="text-2xl font-light tracking-wider text-black hover:text-gray-600 transition-colors duration-200 py-2 cursor-pointer">
+                      ABOUT
+                    </div>
+                    <div className="text-2xl font-light tracking-wider text-black hover:text-gray-600 transition-colors duration-200 py-2 cursor-pointer">
+                      LOOKBOOK
+                    </div>
+                    <div className="text-2xl font-light tracking-wider text-black hover:text-gray-600 transition-colors duration-200 py-2 cursor-pointer">
+                      COMMUNITY
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right Section - Account & Support */}
+              <div className="w-80 p-6 bg-gray-50 space-y-6">
+                <div>
+                  <h3 className="text-xs font-medium tracking-widest text-gray-500 mb-4 uppercase">ACCOUNT</h3>
+                  <div className="space-y-2">
+                    <div className="text-sm tracking-wide text-black hover:text-gray-600 transition-colors duration-200 py-1 cursor-pointer">
+                      Log In
+                    </div>
+                    <div className="text-sm tracking-wide text-black hover:text-gray-600 transition-colors duration-200 py-1 cursor-pointer">
+                      Create Account
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <h3 className="text-xs font-medium tracking-widest text-gray-500 mb-4 uppercase">CUSTOMER SUPPORT</h3>
+                  <div className="space-y-2">
+                    <div className="text-sm tracking-wide text-black hover:text-gray-600 transition-colors duration-200 py-1 cursor-pointer">
+                      Contact Us
+                    </div>
+                    <div className="text-sm tracking-wide text-black hover:text-gray-600 transition-colors duration-200 py-1 cursor-pointer">
+                      Size Guide
+                    </div>
+                    <div className="text-sm tracking-wide text-black hover:text-gray-600 transition-colors duration-200 py-1 cursor-pointer">
+                      Shipping Info
+                    </div>
+                    <div className="text-sm tracking-wide text-black hover:text-gray-600 transition-colors duration-200 py-1 cursor-pointer">
+                      Returns
+                    </div>
+                  </div>
+                </div>
+
+                <div className="pt-6 border-t border-gray-200">
+                  <div className="text-xs tracking-widest text-gray-500 mb-2 uppercase">SHOP IN: UNITED STATES</div>
+                  <div className="text-xs text-gray-400">
+                    Change region
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </nav>
+      )}
+    </>
   );
 }
